@@ -1,0 +1,29 @@
+{
+  "name": "mll-api-request-node",
+  "version": "0.0.1",
+  "description": "A node library for accessing REST APIs - nothing too My Local London specific.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/my-local-london/mll-api-request-node.git"
+  },
+  "keywords": [
+    "REST",
+    "API",
+    "Node",
+    "Promise"
+  ],
+  "author": "Mat Carey <mat@my-local.london>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/my-local-london/mll-api-request-node/issues"
+  },
+  "homepage": "https://github.com/my-local-london/mll-api-request-node#readme",
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "request-promise": "^3.0.0"
+  }
+}
