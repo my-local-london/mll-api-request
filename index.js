@@ -2,8 +2,9 @@ const rp = require('request-promise'),
   _ = require('lodash');
 
 module.exports = {
-  getForServer: function (baseUrl, config) {
-    const defaultHeaders = {};
+  getForServer: function (baseUrl, configIn) {
+    const defaultHeaders = {},
+      conifg = configIn || {};
     if (config.basicAuth) {
       defaultHeaders.authorization = ['Basic', config.basicAuth].join(' ');
     }
@@ -28,16 +29,20 @@ module.exports = {
       }
     }
 
-    function get(url, config, headers) {
-      var request = extendBaseRequest(url, config, headers);
-      if (config && config.unauthenticated) {
-        delete request.headers.authorization;
+    function createDeleteOrGet(verb) {
+      return function (url, config, headers) {
+        var request = extendBaseRequest(url, config, headers);
+        if (config && config.unauthenticated) {
+          delete request.headers.authorization;
+        }
+        request.method = verb.toUpperCase();
+        return rp(request);
       }
-      return rp.get(request);
     }
 
     return {
-      get: get,
+      get: createDeleteOrGet('get'),
+      'delete': createDeleteOrGet('delete'),
       put: createPutOrPost('put'),
       post: createPutOrPost('post')
     };
