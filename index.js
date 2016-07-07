@@ -4,7 +4,7 @@ const rp = require('request-promise'),
 module.exports = {
   getForServer: function (baseUrl, configIn) {
     const defaultHeaders = {},
-      conifg = configIn || {};
+      config = configIn || {};
     if (config.basicAuth) {
       defaultHeaders.authorization = ['Basic', config.basicAuth].join(' ');
     }
